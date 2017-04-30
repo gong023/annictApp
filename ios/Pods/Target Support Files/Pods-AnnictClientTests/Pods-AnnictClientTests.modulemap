@@ -1,0 +1,6 @@
+framework module Pods_AnnictClientTests {
+  umbrella header "Pods-AnnictClientTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

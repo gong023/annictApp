@@ -1,0 +1,24 @@
+# Uncomment this line to define a global platform for your project
+# platform :ios, '6.0'
+
+target 'AnnictClient' do
+
+end
+
+target 'AnnictClientTests' do
+
+end
+
+target 'AnnictClient-tvOS' do
+
+end
+
+target 'AnnictClient-tvOSTests' do
+
+end
+
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
+use_frameworks!
+
+pod 'DCTAuth', :git => 'https://github.com/danielctull/DCTAuth.git'

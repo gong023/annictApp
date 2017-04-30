@@ -1,0 +1,6 @@
+framework module Pods_AnnictClient_tvOS {
+  umbrella header "Pods-AnnictClient-tvOS-umbrella.h"
+
+  export *
+  module * { export * }
+}
