@@ -1,0 +1,34 @@
+{
+	"name": "AnnictClient",
+	"version": "0.0.1",
+	"private": false,
+	"scripts": {
+		"start": "node node_modules/react-native/local-cli/cli.js start",
+		"lint": "node node_modules/.bin/eslint .",
+		"test": "jest"
+	},
+	"dependencies": {
+		"react": "16.0.0-alpha.6",
+		"react-native": "0.43.4",
+		"color": "^1.0.3",
+		"lodash": "^4.17.4",
+		"redux": "^3.6.0",
+		"redux-observable": "^0.12.2"
+	},
+	"devDependencies": {
+		"babel-jest": "19.0.0",
+		"babel-preset-react-native": "1.9.1",
+		"jest": "19.0.2",
+		"react-test-renderer": "16.0.0-alpha.6",
+		"eslint": "^3.13.1",
+		"eslint-config-airbnb": "^13.0.0",
+		"eslint-plugin-import": "^2.2.0",
+		"eslint-plugin-jest": "^1.0.2",
+		"eslint-plugin-jsx-a11y": "^2.2.3",
+		"eslint-plugin-react": "^6.8.0",
+		"nock": "^9.0.2"
+	},
+	"jest": {
+		"preset": "react-native"
+	}
+}
