@@ -12,6 +12,7 @@
     "lodash": "^4.17.4",
     "react": "16.0.0-alpha.6",
     "react-native": "0.43.4",
+    "react-native-config": "^0.4.1",
     "react-native-oauth": "^2.1.16",
     "redux": "^3.6.0",
     "redux-observable": "^0.12.2"

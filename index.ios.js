@@ -11,6 +11,7 @@ import {
   Text,
   View
 } from 'react-native';
+import Config from 'react-native-config';
 
 export default class AnnictClient extends Component {
   render() {
@@ -25,6 +26,9 @@ export default class AnnictClient extends Component {
         <Text style={styles.instructions}>
           Press Cmd+R to reload,{'\n'}
           Cmd+D or shake for dev menu
+        </Text>
+        <Text style={styles.instructions}>
+          {Config.CLIENT_SECRET}
         </Text>
       </View>
     );
