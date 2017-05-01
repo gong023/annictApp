@@ -6,8 +6,8 @@ export const requestAuthorize = (action$) => {
     action$,
     api: '/oauth/authorize',
     request: authTypes.request_auth,
-    request_success: authTypes.request_success,
-    request_fail: authTypes.request_fail,
+    request_success: authTypes.request_auth_success,
+    request_fail: authTypes.request_auth_fail,
   };
   return requestEpic(params);
 };
@@ -17,8 +17,8 @@ export const requestToken = (action$) => {
     action$,
     api: '/oauth/token',
     request: authTypes.request_token,
-    request_success: authTypes.request_success,
-    request_fail: authTypes.request_fail,
+    request_success: authTypes.request_token_success,
+    request_fail: authTypes.request_token_fail,
   };
   return requestEpic(params);
 };

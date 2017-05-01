@@ -6,6 +6,10 @@ export default (state = { accessToken: '' }, action) => {
       return {
         accessToken: action.data.accessToken,
       };
+    case authTypes.request_token_fail:
+      return {
+        error: true,
+      };
     default:
       return state;
   }
