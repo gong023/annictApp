@@ -4,6 +4,7 @@ import { createEpicMiddleware } from 'redux-observable';
 import { applyMiddleware, createStore } from 'redux';
 import axios from 'axios';
 import logger from 'redux-logger';
+import Routes from './containers/Router';
 import App from './containers/App';
 import epics from './epics';
 import reducer from './reducers';
@@ -16,7 +17,7 @@ const store = () => createStore(reducer, applyMiddleware(...middleware));
 
 const AnnictClient = () =>
   <Provider store={store()}>
-    <App />
+    <Routes />
   </Provider>;
 
 export default AnnictClient;

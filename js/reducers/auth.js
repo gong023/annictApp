@@ -1,15 +1,18 @@
 import { authTypes } from './../actions/actionTypes';
 
-export default (state = { accessToken: '' }, action) => {
+export default (state = { loginUrl: '' }, action) => {
   switch (action.type) {
-    case authTypes.request_token_success:
+    case authTypes.request_token_success: {
+      const loginUrl = action.data.match(/https:\/\/api.annict.com.+">/)[0].replace(/">$/, '');
       return {
-        accessToken: action.data.accessToken,
+        loginUrl,
       };
-    case authTypes.request_token_fail:
+    }
+    case authTypes.request_token_fail: {
       return {
         error: true,
       };
+    }
     default:
       return state;
   }
