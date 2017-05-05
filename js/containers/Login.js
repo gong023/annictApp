@@ -40,8 +40,12 @@ Login.propTypes = {
   authRequestAction: PropTypes.func.isRequired,
 };
 
+export const mapStateToProps = state => ({
+  scene: state.route.scene,
+});
+
 const mapDispatchToProps = dispatch => ({
   authRequestAction: bindActionCreators(authRequest, dispatch),
 });
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

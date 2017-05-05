@@ -1,37 +1,16 @@
-import { Actions, Scene, Router, Reducer } from 'react-native-router-flux';
-import React, { PropTypes } from 'react';
+import { Scene, Router } from 'react-native-router-flux';
+import React from 'react';
 import { connect } from 'react-redux';
 import Login from './Login';
 import LoginWeb from './LoginWeb';
 
-const scenes = Actions.create(
-  <Scene key="root">
-    <Scene key="login" component={Login} hideNavBar={true} />
-    <Scene key="loginWeb" component={LoginWeb} />
-  </Scene>,
+const RouterWithRedux = connect()(Router);
+
+export default () => (
+  <RouterWithRedux>
+    <Scene key="root" hideNavbar>
+      <Scene key="login" component={Login} />
+      <Scene key="loginWeb" component={LoginWeb} />
+    </Scene>
+  </RouterWithRedux>
 );
-
-class Routes extends React.Component {
-  reducerCreate(params) {
-    const defaultReducer = Reducer(params);
-    return (state, action) => {
-      this.props.dispatch(action);
-      return defaultReducer(state, action);
-    };
-  }
-
-  render() {
-    return (
-      <Router
-        createReducer={this.reducerCreate.bind(this)}
-        scenes={scenes}
-      />
-    );
-  }
-}
-
-Routes.propTypes = {
-  dispatch: PropTypes.func,
-};
-
-export default connect()(Routes);

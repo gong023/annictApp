@@ -1,15 +1,19 @@
+import { ActionConst } from 'react-native-router-flux';
 import { authTypes } from './../actions/actionTypes';
+import routeReducer from './route';
 
-export default (state = { loginUrl: '' }, action) => {
+export default (state = { loginHtml: '' }, action) => {
   switch (action.type) {
-    case authTypes.request_token_success: {
-      const loginUrl = action.data.match(/https:\/\/api.annict.com.+">/)[0].replace(/">$/, '');
+    case authTypes.request_auth_success: {
       return {
-        loginUrl,
+        ...state,
+        loginHtml: action.data,
+        route: routeReducer(ActionConst.FOCUS, action),
       };
     }
-    case authTypes.request_token_fail: {
+    case authTypes.request_auth_fail: {
       return {
+        ...state,
         error: true,
       };
     }

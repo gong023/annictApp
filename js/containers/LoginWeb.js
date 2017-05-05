@@ -1,16 +1,19 @@
 import React, { PropTypes } from 'react';
-import { Webview } from 'react-native';
+import { WebView, Modal } from 'react-native';
 import { connect } from 'react-redux';
 
 const LoginWeb = props =>
-  <Webview source={{ url: props.loginUrl }} />;
+  <Modal animationType="slide">
+    <WebView source={{ html: props.loginHtml }} />;
+  </Modal>;
 
 LoginWeb.propTypes = {
-  loginUrl: PropTypes.string.isRequired,
+  loginHtml: PropTypes.string.isRequired,
 };
 
 export const mapStateToProps = state => ({
-  loginUrl: state.auth.loginUrl,
+  loginHtml: state.auth.loginHtml,
+  scene: state.routes.scene,
 });
 
 export default connect(mapStateToProps)(LoginWeb);
