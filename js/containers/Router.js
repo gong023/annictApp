@@ -1,16 +1,16 @@
-import { Scene, Router } from 'react-native-router-flux';
+import { Scene, Router, ActionConst } from 'react-native-router-flux';
 import React from 'react';
 import { connect } from 'react-redux';
+import { WebView } from 'react-native';
 import Login from './Login';
-import LoginWeb from './LoginWeb';
 
 const RouterWithRedux = connect()(Router);
 
 export default () => (
   <RouterWithRedux>
     <Scene key="root" hideNavbar>
-      <Scene key="login" component={Login} />
-      <Scene key="loginWeb" component={LoginWeb} />
+      <Scene key="login" component={Login} initial />
+      <Scene key="loginWeb" component={WebView} />
     </Scene>
   </RouterWithRedux>
 );

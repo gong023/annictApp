@@ -1,14 +1,14 @@
-import { ActionConst } from 'react-native-router-flux';
 import { authTypes } from './../actions/actionTypes';
-import routeReducer from './route';
 
-export default (state = { loginHtml: '' }, action) => {
+const initialState = { loginHtml: '', showLoginWeb: false };
+
+export default (state = initialState, action) => {
   switch (action.type) {
     case authTypes.request_auth_success: {
       return {
         ...state,
         loginHtml: action.data,
-        route: routeReducer(ActionConst.FOCUS, action),
+        showLoginWeb: true,
       };
     }
     case authTypes.request_auth_fail: {

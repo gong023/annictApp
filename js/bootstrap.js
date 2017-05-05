@@ -14,8 +14,6 @@ const epicMiddleware = createEpicMiddleware(epics);
 const middleware = [logger, epicMiddleware];
 const store = compose(applyMiddleware(...middleware))(createStore)(reducer);
 
-// const store = () => createStore(reducer, applyMiddleware(...middleware));
-
 const AnnictClient = () =>
   <Provider store={store}>
     <Routes />
