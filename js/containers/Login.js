@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Config from 'react-native-config';
 import { Actions } from 'react-native-router-flux';
+import _ from 'lodash';
 import { authRequest } from './../actions';
 
 const styles = StyleSheet.create({
@@ -22,10 +23,25 @@ const styles = StyleSheet.create({
   },
 });
 
+const authParam = {
+  response_type: 'code',
+  client_id: Config.CLIENT_ID,
+  redirect_uri: 'annict://oauth',
+  scope: 'read',
+};
+
+const objectToQueryString = (obj) => {
+  return _.reduce(obj, (result, value, key) => {
+    return (!_.isNull(value) && !_.isUndefined(value)) ? (result += key + '=' + value + '&') : result;
+  }, '').slice(0, -1);
+};
+
 class Login extends React.Component {
   componentDidUpdate(prevProps) {
     if (!prevProps.showLoginWeb && this.props.showLoginWeb) {
-      Actions.loginWeb({ source: { html: this.props.loginHtml } });
+      const url = `https://annict.com/sign_in?back=${encodeURIComponent(objectToQueryString(authParam))}`;
+      console.log(url);
+      Actions.loginWeb({ source: { url } });
     }
   }
 
@@ -36,11 +52,7 @@ class Login extends React.Component {
         <Button
           title="sign in"
           onPress={() => {
-            this.props.authRequestAction({
-              response_type: 'code',
-              client_id: Config.CLIENT_ID,
-              redirect_uri: 'annict://oauth',
-            });
+            this.props.authRequestAction(authParam);
           }}
         />
       </View>
@@ -50,12 +62,10 @@ class Login extends React.Component {
 
 Login.propTypes = {
   authRequestAction: PropTypes.func.isRequired,
-  loginHtml: PropTypes.string,
   showLoginWeb: PropTypes.bool,
 };
 
 export const mapStateToProps = state => ({
-  loginHtml: state.auth.loginHtml,
   showLoginWeb: state.auth.showLoginWeb,
 });
 

@@ -9,6 +9,9 @@ import reducer from './reducers';
 import Routes from './containers/Router';
 
 axios.defaults.baseURL = 'https://api.annict.com';
+if (__DEV__) {
+  console.disableYellowBox = true;
+}
 
 const epicMiddleware = createEpicMiddleware(epics);
 const middleware = [logger, epicMiddleware];
