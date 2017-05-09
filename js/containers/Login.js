@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, Linking } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Config from 'react-native-config';
@@ -26,21 +26,20 @@ const styles = StyleSheet.create({
 const authParam = {
   response_type: 'code',
   client_id: Config.CLIENT_ID,
-  redirect_uri: 'annict://oauth',
-  scope: 'read',
+  redirect_uri: 'annict://callback',
 };
 
-const objectToQueryString = (obj) => {
-  return _.reduce(obj, (result, value, key) => {
-    return (!_.isNull(value) && !_.isUndefined(value)) ? (result += key + '=' + value + '&') : result;
-  }, '').slice(0, -1);
-};
+const objectToQueryString = obj => (
+  _.reduce(obj, (result, value, key) => {
+    return (!_.isNull(value) && !_.isUndefined(value)) ? (result += `${key}=${encodeURIComponent(value)}&`) : result;
+  }, '').slice(0, -1)
+);
 
 class Login extends React.Component {
   componentDidUpdate(prevProps) {
     if (!prevProps.showLoginWeb && this.props.showLoginWeb) {
-      const url = `https://annict.com/sign_in?back=${encodeURIComponent(objectToQueryString(authParam))}`;
-      console.log(url);
+      const back = encodeURIComponent(objectToQueryString(authParam));
+      const url = `https://api.annict.com/sign_in?back=${back}`;
       Actions.loginWeb({ source: { url } });
     }
   }
@@ -52,7 +51,9 @@ class Login extends React.Component {
         <Button
           title="sign in"
           onPress={() => {
-            this.props.authRequestAction(authParam);
+            const url = `https://api.annict.com/oauth/authorize?${objectToQueryString(authParam)}`;
+            console.log(url);
+            Actions.loginWeb({ source: { url } });
           }}
         />
       </View>

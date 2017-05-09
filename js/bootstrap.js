@@ -6,7 +6,7 @@ import axios from 'axios';
 import logger from 'redux-logger';
 import epics from './epics';
 import reducer from './reducers';
-import Routes from './containers/Router';
+import App from './containers/App';
 
 axios.defaults.baseURL = 'https://api.annict.com';
 if (__DEV__) {
@@ -19,7 +19,7 @@ const store = compose(applyMiddleware(...middleware))(createStore)(reducer);
 
 const AnnictClient = () =>
   <Provider store={store}>
-    <Routes />
+    <App />
   </Provider>;
 
 export default AnnictClient;
