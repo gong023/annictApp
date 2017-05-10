@@ -29,15 +29,9 @@ class App extends React.Component {
     if (_.isEmpty(event.url)) {
       return;
     }
-    const schema = event.url.match(/^annict:\/\/(.+)/)[1];
-    console.log(schema);
-
-    switch (schema) {
-      case 'callback':
-        Actions.token();
-        break;
-      default:
-        break;
+    if (event.url.match(/^annict:\/\/callback\?code=(.+)/)) {
+      const code = event.url.match(/^annict:\/\/callback\?code=(.+)/)[1];
+      Actions.token({ code });
     }
   }
 
