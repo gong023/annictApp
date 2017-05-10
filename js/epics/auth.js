@@ -1,18 +1,7 @@
 import requestEpic from './request';
 import { authTypes } from './../actions/actionTypes';
 
-export const requestAuthorize = (action$) => {
-  const params = {
-    action$,
-    api: '/oauth/authorize',
-    request: authTypes.request_auth,
-    request_success: authTypes.request_auth_success,
-    request_fail: authTypes.request_auth_fail,
-  };
-  return requestEpic(params);
-};
-
-export const requestToken = (action$) => {
+export default (action$) => {
   const params = {
     action$,
     api: '/oauth/token',
@@ -20,5 +9,5 @@ export const requestToken = (action$) => {
     request_success: authTypes.request_token_success,
     request_fail: authTypes.request_token_fail,
   };
-  return requestEpic(params);
+  return requestEpic(params, 'post');
 };

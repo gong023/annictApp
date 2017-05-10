@@ -47,9 +47,4 @@ const Login = props => (
   </View>
 );
 
-Login.propTypes = {
-  authRequestAction: PropTypes.func.isRequired,
-  showLoginWeb: PropTypes.bool,
-};
-
 export default connect()(Login);
