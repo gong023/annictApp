@@ -1,8 +1,10 @@
 import React, { PropTypes } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Config from 'react-native-config';
+import { Actions } from 'react-native-router-flux';
+import axios from 'axios';
 import { tokenRequest } from './../actions';
 
 const styles = StyleSheet.create({
@@ -29,14 +31,14 @@ class Token extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log(this.props.token);
+    axios.defaults.headers.common.Authorization = `Bearer ${this.props.token}`;
+    Actions.mainTab();
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>code</Text>
-        <Text style={styles.text}>{this.props.code}</Text>
+        <ActivityIndicator animating />
       </View>
     );
   }

@@ -7,6 +7,7 @@ const initialState = {
 export default (state = initialState, action = {}) => {
   switch (action.type) {
     case ActionConst.FOCUS:
+    case ActionConst.JUMP:
       return {
         ...state,
         scene: action.state,
