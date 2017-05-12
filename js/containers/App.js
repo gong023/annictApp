@@ -1,5 +1,5 @@
 import React from 'react';
-import { Linking, Platform, Alert } from 'react-native';
+import { Linking } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import _ from 'lodash';

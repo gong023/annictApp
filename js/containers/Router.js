@@ -5,6 +5,7 @@ import { WebView, Text } from 'react-native';
 import Login from './Login';
 import Token from './Token';
 import Dummy from './Dummy';
+import ActivityList from './ActivityList';
 import TabIcon from './../components/TabIcon';
 
 const RouterWithRedux = connect()(Router);
@@ -16,9 +17,9 @@ export default () => (
       <Scene key="loginWeb" component={WebView} />
       <Scene key="token" component={Token} />
 
-      <Scene key="mainTab" tabs tabBarStyle={{ backgroundColor: 'lightgray' }}>
-        <Scene key="worksTab" title="works" icon={TabIcon}>
-          <Scene key="works" title="works" component={Dummy} initial hideNavBar />
+      <Scene key="mainTab" tabs tabBarStyle={{ backgroundColor: 'lightgray' }} hideNavBar >
+        <Scene key="activitiesTab" title="activities" icon={TabIcon}>
+          <Scene key="activities" title="activities" component={ActivityList} initial hideNavBar />
         </Scene>
 
         <Scene key="episodesTab" title="episodes" icon={TabIcon}>
