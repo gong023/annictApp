@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { WebView } from 'react-native';
 import Login from './Login';
 import Token from './Token';
-import Dummy from './Dummy';
+import Dummy from '../components/Dummy';
 import ActivityList from './ActivityList';
 import Profile from './Profile';
 import TabIcon from './../components/TabIcon';

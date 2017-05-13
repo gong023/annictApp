@@ -1,5 +1,5 @@
-import React, { PropTypes } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import React from 'react';
+import { StyleSheet, StatusBar, View, Button } from 'react-native';
 import { connect } from 'react-redux';
 import Config from 'react-native-config';
 import { Actions } from 'react-native-router-flux';
@@ -36,7 +36,7 @@ const objectToQuery = obj => (
 
 const Login = props => (
   <View style={styles.container}>
-    <Text style={styles.text}>Please sign in</Text>
+    <StatusBar hidden />
     <Button
       title="sign in"
       onPress={() => {

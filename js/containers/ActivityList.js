@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { ListView, Text, View, StyleSheet, Image } from 'react-native';
+import { ListView, Text, View, StyleSheet, Image, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { activitiesRequest } from './../actions';
@@ -17,6 +17,10 @@ const styles = StyleSheet.create({
   },
   text: {
     flex: 1,
+  },
+  indicator: {
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 
@@ -40,20 +44,23 @@ class ActivityList extends React.Component {
 
   render() {
     return (
-      <ListView
-        enableEmptySections
-        dataSource={this.state.dataSource}
-        renderRow={activity => (
-          <View>
-            <View style={styles.row}>
-              <Image style={styles.thumb} source={{ uri: activity.user.avatar_url }} />
-              <Text style={styles.text}>
-                watched {activity.work.title} vol.{activity.work.episodes_count}
-              </Text>
+      <View>
+        <ActivityIndicator animating={this.props.data.length === 0} />
+        <ListView
+          enableEmptySections
+          dataSource={this.state.dataSource}
+          renderRow={activity => (
+            <View>
+              <View style={styles.row}>
+                <Image style={styles.thumb} source={{ uri: activity.user.avatar_url }} />
+                <Text style={styles.text}>
+                  watched {activity.work.title} vol.{activity.work.episodes_count}
+                </Text>
+              </View>
             </View>
-          </View>
-        )}
-      />
+          )}
+        />
+      </View>
     );
   }
 }
